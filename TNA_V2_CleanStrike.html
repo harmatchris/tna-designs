@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TNA V2 — Clean Strike | Team Ninja Association</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #000;
+            --secondary-color: #f5f5f7;
+            --accent-color: #0071e3;
+            --text-primary: #1d1d1f;
+            --text-secondary: #6f6f77;
+            --border-color: #e5e5e7;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.15);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 5%;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 5% 100px;
+            text-align: center;
+            background: linear-gradient(135deg, #fff 0%, #fafafa 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+            max-width: 900px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            max-width: 600px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 32px;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+        }
+
+        .cta-button:hover {
+            background: #0077ed;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 80px 5%;
+        }
+
+        section h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 60px;
+        }
+
+        /* Featured Athletes */
+        .athletes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 32px;
+        }
+
+        .athlete-card {
+            background: var(--secondary-color);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+
+        .athlete-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--border-color);
+        }
+
+        .athlete-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--accent-color), #0099ff);
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            font-weight: 700;
+        }
+
+        .athlete-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .athlete-team {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        /* Team Standings */
+        .standings-section {
+            background: var(--secondary-color);
+        }
+
+        .standings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .team-badge {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .team-badge:hover {
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        .team-badge h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .team-badge .state {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0);
+            transition: background 0.4s ease;
+        }
+
+        .gallery-item:hover::before {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Next Event */
+        .event-card {
+            background: linear-gradient(135deg, #0071e3 0%, #0099ff 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .event-card h3 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .event-details {
+            font-size: 18px;
+            opacity: 0.95;
+            margin-bottom: 32px;
+        }
+
+        .event-card .cta-button {
+            background: white;
+            color: var(--accent-color);
+            margin-top: 16px;
+        }
+
+        .event-card .cta-button:hover {
+            background: #f5f5f7;
+        }
+
+        /* YouTube Section */
+        .youtube-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .video-card {
+            aspect-ratio: 16/9;
+            background: var(--secondary-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 60px 5%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-section h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: 0.3px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 13px;
+            display: block;
+            margin-bottom: 12px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .newsletter {
+            margin-bottom: 48px;
+        }
+
+        .newsletter input {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .newsletter input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 32px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 160x;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            section h2 {
+                font-size: 36px;
+            }
+
+            .athletes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .standings-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .event-card {
+                padding: 40px 24px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            animation: fadeInUp 0.6s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">TNA</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#teams">Teams</a></li>
+            <li><a href="#athletes">Athletes</a></li>
+            <li><a href="#schedule">Schedule</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>THE FUTURE OF NINJA COMPETITION</h1>
+        <p>Experience the pinnacle of athletic excellence. Where champions are forged and legends are made.</p>
+        <a href="#athletes" class="cta-button">Explore Now</a>
+    </section>
+
+    <!-- Featured Athletes -->
+    <section id="athletes">
+        <h2>Featured Athletes</h2>
+        <p class="section-subtitle">Meet the elite competitors shaping the future of ninja sport</p>
+        <div class="athletes-grid">
+            <div class="athlete-card">
+                <div class="athlete-avatar">🥋</div>
+                <h3>Daniel Gil</h3>
+                <p class="athlete-team">Challengers</p>
+            </div>
+            <div class="athlete-card">
+                <div class="athlete-avatar">⚡</div>
+                <h3>Joe Moravsky</h3>
+                <p class="athlete-team">Aliens</p>
+            </div>
+            <div class="athlete-card">
+                <div class="athlete-avatar">👑</div>
+                <h3>Enzo DeFerrari</h3>
+                <p class="athlete-team">Elites</p>
+            </div>
+            <div class="athlete-card">
+                <div class="athlete-avatar">🦅</div>
+                <h3>Isaiah Thomas</h3>
+                <p class="athlete-team">Falcons</p>
+            </div>
+            <div class="athlete-card">
+                <div class="athlete-avatar">🔨</div>
+                <h3>Jackson Erdos</h3>
+                <p class="athlete-team">Forgers</p>
+            </div>
+            <div class="athlete-card">
+                <div class="athlete-avatar">💪</div>
+                <h3>Avery Glantz</h3>
+                <p class="athlete-team">G-Force</p>
+            </div>
+            <div class="athlete-card">
+                <div class="athlete-avatar">⚔️</div>
+                <h3>JJ Black</h3>
+                <p class="athlete-team">Blitz</p>
+            </div>
+            <div class="athlete-card">
+                <div class="athlete-avatar">🌪️</div>
+                <h3>Josh Auer</h3>
+                <p class="athlete-team">Hurricanes</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Standings -->
+    <section id="teams" class="standings-section">
+        <h2>Team Standings</h2>
+        <p class="section-subtitle">Current league rankings across all divisions</p>
+        <div class="standings-grid">
+            <div class="team-badge">
+                <h4>🏆 Challengers</h4>
+                <div class="state">8W - 2L</div>
+            </div>
+            <div class="team-badge">
+                <h4>👽 Aliens</h4>
+                <div class="state">7W - 3L</div>
+            </div>
+            <div class="team-badge">
+                <h4>⭐ Elites</h4>
+                <div class="state">7W - 3L</div>
+            </div>
+            <div class="team-badge">
+                <h4>🦅 Falcons</h4>
+                <div class="state">6W - 4L</div>
+            </div>
+            <div class="team-badge">
+                <h4>🔨 Forgers</h4>
+                <div class="state">5W - 5L</div>
+            </div>
+            <div class="team-badge">
+                <h4>💪 G-Force</h4>
+                <div class="state">5W - 5L</div>
+            </div>
+            <div class="team-badge">
+                <h4>⚔️ Blitz</h4>
+                <div class="state">4W - 6L</div>
+            </div>
+            <div class="team-badge">
+                <h4>🌪️ Hurricanes</h4>
+                <div class="state">4W - 6L</div>
+            </div>
+            <div class="team-badge">
+                <h4>👑 Dynasty</h4>
+                <div class="state">3W - 7L</div>
+            </div>
+            <div class="team-badge">
+                <h4>♠️ Aces</h4>
+                <div class="state">3W - 7L</div>
+            </div>
+            <div class="team-badge">
+                <h4>♦️ Kings</h4>
+                <div class="state">2W - 8L</div>
+            </div>
+            <div class="team-badge">
+                <h4>⚡ Bolts</h4>
+                <div class="state">1W - 9L</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <h2>Event Highlights</h2>
+        <p class="section-subtitle">Capturing the essence of elite ninja competition</p>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect fill='%23667eea' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='48' fill='white' font-weight='bold'%3EEvent 1%3C/text%3E%3C/svg%3E">
+            </div>
+            <div class="gallery-item">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%SCrect fill='%23764ba2' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='48' fill='white' font-weight='bold'%3EEvent 2%3C/text%3E%3C/svg%3E">
+            </div>
+            <div class="gallery-item">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%SCrect fill='%230071e3' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='48' fill='white' font-weight='bold'%3EEvent 3%3C/text%3E%3C/svg%3E">
+            </div>
+            <div class="gallery-item">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%SCrect fill='%23f093fb' width='400' height='400'/%3E%3Ctext x='50%25' y='50%2%' dominant-baseline='middle' text-anchor='middle' font-size='48' fill='white' font-weight='bold'%3EEvent 4%3C/text%3E%3C/svg%3E">
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Event -->
+    <section id="schedule">
+        <div class="event-card">
+            <h3>Next Event</h3>
+            <div class="event-details">
+                <div style="font-size: 24px; font-weight: 600; margin-bottom: 8px;">TNA Championship Finals</div>
+                <div>April 15, 2026 | Las Vegas, NV</div>
+            </div>
+            <a href="#" class="cta-button">Get Tickets</a>
+        </div>
+    </section>
+
+    <!-- YouTube Section -->
+    <section id="videos">
+        <h2>Latest from @TeamNinjaAssociation</h2>
+        <p class="section-subtitle">Watch the most intense moments from our competitions</p>
+        <div class="youtube-grid">
+            <div class="video-card">
+                <div class="video-placeholder">▶ Video 1</div>
+            </div>
+            <div class="video-card">
+                <div class="video-placeholder">▶ Video 2</div>
+            </div>
+            <div class="video-card">
+                <div class="video-placeholder">▶ Video 3</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="about">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>About TNA</h4>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Mission</a></li>
+                    <li><a href="#">Team</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Competition</h4>
+                <ul>
+                    <li><a href="#">Schedule</a></li>
+                    <li><a href="#">Results</a></li>
+                    <li><a href="#">Rules</a></li>
+                    <li><a href="#">Athletes</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Community</h4>
+                <ul>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Merchandise</a></li>
+                    <li><a href="#">Sponsorship</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <ul>
+                    <li><a href="#">YouTube</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">TikTok</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="newsletter">
+            <h4 style="color: white; margin-bottom: 12px;">Subscribe to Updates</h4>
+            <input type="email" placeholder="Enter your email">
+        </div>
+
+        <div class="footer-bottom">
+            <div>&copy; 2026 Team Ninja Association. All rights reserved.</div>
+            <div>
+                <a href="#" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; margin-right: 24px;">Privacy</a>
+                <a href="#" style="color: rgba(255, 255, 255, 0.7); text-decoration: none;">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transition = 'opacity 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
