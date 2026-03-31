@@ -3,49 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TNA Website Designs — Overview</title>
+    <title>TNA Website Designs</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #fff; min-height: 100vh; }
-        .header { text-align: center; padding: 60px 20px 40px; background: linear-gradient(135deg, #0a0a2e, #1a0a3e, #0a0a2e); }
-        .header h1 { font-size: 3rem; font-weight: 800; background: linear-gradient(90deg, #00d4ff, #ff1744, #9c27b0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px; }
-        .header p { font-size: 1.2rem; color: #aaa; max-width: 600px; margin: 0 auto; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 30px; max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-        .card { background: #141414; border-radius: 16px; overflow: hidden; border: 1px solid #222; transition: transform 0.3s, border-color 0.3s; }
-        .card:hover { transform: translateY(-6px); }
-        .card.v1:hover { border-color: #00d4ff; }
-        .card.v2:hover { border-color: #007aff; }
-        .card.v3:hover { border-color: #ff00ff; }
-        .card.comp:hover { border-color: #4caf50; }
-        .card-banner { height: 180px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; }
-        .v1 .card-banner { background: linear-gradient(135deg, #0d1117, #1a1a2e); color: #00d4ff; }
-        .v2 .card-banner { background: linear-gradient(135deg, #f5f5f7, #e8e8ed); color: #1d1d1f; }
-        .v3 .card-banner { background: linear-gradient(135deg, #0a0015, #1a002a); color: #ff00ff; text-shadow: 0 0 20px rgba(255,0,255,0.5); }
-        .comp .card-banner { background: linear-gradient(135deg, #1a2332, #0d1b2a); color: #4caf50; }
-        .card-body { padding: 24px; }
-        .card-body h2 { font-size: 1.4rem; margin-bottom: 8px; }
-        .card-body p { color: #888; font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; }
-        .card-body a { display: inline-block; padding: 10px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: opacity 0.2s; }
-        .card-body a:hover { opacity: 0.85; }
-        .v1 .card-body a { background: #00d4ff; color: #000; }
-        .v2 .card-body a { background: #007aff; color: #fff; }
-        .v3 .card-body a { background: linear-gradient(90deg, #ff00ff, #00ffff); color: #000; }
-        .comp .card-body a { background: #4caf50; color: #fff; }
-        .footer { text-align: center; padding: 40px 20px; color: #555; font-size: 0.85rem; border-top: 1px solid #1a1a1a; }
-        @media (max-width: 600px) { .header h1 { font-size: 2rem; } .grid { grid-template-columns: 1fr; } }
+        body { font-family: 'Segoe UI', sans-serif; background: #0a0a0a; color: #fff; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; }
+        h1 { font-size: 2.5rem; margin-bottom: 0.5rem; letter-spacing: 2px; }
+        .subtitle { color: rgba(255,255,255,0.6); margin-bottom: 3rem; font-size: 1.1rem; }
+        .designs { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1000px; width: 100%; }
+        .card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 2rem; text-align: center; transition: all 0.3s ease; }
+        .card:hover { border-color: #1db954; background: rgba(29,185,84,0.08); transform: translateY(-4px); }
+        .card h2 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+        .card p { color: rgba(255,255,255,0.6); margin-bottom: 1.5rem; font-size: 0.95rem; }
+        .card a { display: inline-block; padding: 0.7rem 2rem; background: #1db954; color: #000; text-decoration: none; border-radius: 6px; font-weight: 600; transition: all 0.3s ease; }
+        .card a:hover { background: #1ed760; }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>TNA Website Designs</h1>
-        <p>Three modern website concepts for the Team Ninja Association — pick your favorite and let's build it.</p>
+    <h1>TNA Website Designs</h1>
+    <p class="subtitle">Team Ninja Association - Design Concepts</p>
+    <div class="designs">
+        <div class="card">
+            <h2>V1 - DarkForge</h2>
+            <p>Dark ESPN-style design with bold typography and immersive hero section</p>
+            <a href="TNA_V1_DarkForge.html">View Design</a>
+        </div>
+        <div class="card">
+            <h2>V2 - CleanStrike</h2>
+            <p>Clean, modern layout with smooth animations and organized sections</p>
+            <a href="TNA_V2_CleanStrike.html">View Design</a>
+        </div>
+        <div class="card">
+            <h2>V3 - ArenaPulse</h2>
+            <p>Cinematic esports-inspired design with particle effects and sound</p>
+            <a href="TNA_V3_ArenaPulse.html">View Design</a>
+        </div>
     </div>
-    <div class="grid">
-        <div class="card v1"><div class="card-banner">Dark Forge</div><div class="card-body"><h2>V1 — Dark Forge</h2><p>Dark, competition-focused design with live ticker, athlete cards, team standings, and an electrifying atmosphere.</p><a href="TNA_V1_DarkForge.html">View Design</a></div></div>
-        <div class="card v2"><div class="card-banner">Clean Strike</div><div class="card-body"><h2>V2 — Clean Strike</h2><p>Premium light theme inspired by Apple's design language. Clean typography, generous whitespace, professional polish.</p><a href="TNA_V2_CleanStrike.html">View Design</a></div></div>
-        <div class="card v3"><div class="card-banner">Arena Pulse</div><div class="card-body"><h2>V3 — Arena Pulse</h2><p>Immersive fullscreen experience with particle effects, glow animations, and cinematic arena energy.</p><a href="TNA_V3_ArenaPulse.html">View Design</a></div></div>
-        <div class="card comp"><div class="card-banner">Comparison</div><div class="card-body"><h2>Design Comparison</h2><p>Side-by-side analysis of all three concepts with recommendations for stakeholders.</p><a href="TNA_Website_Comparison.html">View Comparison</a></div></div>
-    </div>
-    <div class="footer">&copy; 2026 Team Ninja Association — Website Design Concepts</div>
 </body>
 </html>
