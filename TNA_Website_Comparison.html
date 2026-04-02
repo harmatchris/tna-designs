@@ -1,1 +1,222 @@
-placeholder
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TNA Website Redesign â 3 Concepts Comparison</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:#fafafa;color:#111;-webkit-font-smoothing:antialiased;padding:60px clamp(20px,5vw,80px)}
+.container{max-width:1100px;margin:0 auto}
+.header{text-align:center;margin-bottom:80px}
+.header h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(32px,5vw,52px);font-weight:700;letter-spacing:-1px;margin-bottom:12px}
+.header .green{color:#1DB954}
+.header p{font-size:17px;color:#666;max-width:600px;margin:0 auto;line-height:1.7}
+.problems{background:#111;color:#fff;border-radius:16px;padding:48px;margin-bottom:64px}
+.problems h2{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;margin-bottom:24px;color:#ef4444}
+.problems ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.problems li{display:flex;align-items:flex-start;gap:12px;font-size:15px;color:#aaa;line-height:1.6}
+.problems li::before{content:'';width:8px;height:8px;border-radius:50%;background:#ef4444;flex-shrink:0;margin-top:7px}
+.concept{background:#fff;border:1px solid #e8e8e8;border-radius:16px;overflow:hidden;margin-bottom:40px;transition:all .3s ease}
+.concept:hover{box-shadow:0 12px 40px rgba(0,0,0,.08);border-color:transparent}
+.concept-header{padding:40px 48px;border-bottom:1px solid #e8e8e8;display:flex;align-items:center;gap:24px}
+.concept-num{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;flex-shrink:0}
+.concept:nth-child(1) .concept-num{background:#111;color:#1DB954}
+.concept:nth-child(2) .concept-num{background:#1DB954;color:#000}
+.concept:nth-child(3) .concept-num{background:linear-gradient(135deg,#111,#222);color:#1DB954}
+.concept-header h2{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700}
+.concept-header .subtitle{font-size:14px;color:#888;margin-top:4px}
+.concept-body{padding:40px 48px}
+.concept-body h3{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#1DB954;margin-bottom:12px;margin-top:28px}
+.concept-body h3:first-child{margin-top:0}
+.concept-body p{font-size:15px;line-height:1.8;color:#555;margin-bottom:12px}
+.features{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:20px 0}
+.feature{padding:16px 20px;border-radius:10px;background:#f8f8f8;border:1px solid #eee}
+.feature strong{display:block;font-size:13px;margin-bottom:4px;color:#111}
+.feature span{font-size:13px;color:#777;line-height:1.5}
+.improvements{background:#f0faf4;border:1px solid #d0f0db;border-radius:12px;padding:24px;margin:20px 0}
+.improvements h4{font-size:14px;font-weight:700;color:#1DB954;margin-bottom:12px}
+.improvements ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.improvements li{display:flex;align-items:flex-start;gap:8px;font-size:14px;color:#444;line-height:1.6}
+.improvements li::before{content:'';width:16px;height:16px;border-radius:50%;background:#1DB954;flex-shrink:0;margin-top:2px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:10px}
+.summary{background:#111;color:#fff;border-radius:16px;padding:48px;text-align:center;margin-top:64px}
+.summary h2{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:700;margin-bottom:16px}
+.summary p{font-size:16px;color:#888;max-width:600px;margin:0 auto;line-height:1.7}
+.file-ref{display:inline-block;padding:6px 14px;border-radius:6px;background:#1a1a1a;font-size:13px;color:#1DB954;font-weight:600;font-family:monospace;margin-top:4px}
+@media(max-width:768px){
+  .concept-header{flex-direction:column;align-items:flex-start;padding:28px}
+  .concept-body{padding:28px}
+  .features{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>TNA Website <span class="green">Redesign</span></h1>
+  <p>Three concept directions for the new Team Ninja Association website. Each solves the core problems of the current site in a different way.</p>
+</div>
+
+<div class="problems">
+  <h2>Problems with the Current Website</h2>
+  <ul>
+    <li>Built on Squarespace with a generic template â doesn't reflect the energy, professionalism, or ambition of TNA as a sport brand</li>
+    <li>No live score integration, match tracking, or real-time competition feel â the core product (matches) is buried</li>
+    <li>Fragmented shopping experience â three separate external stores (Stealth NY Team Shirts, Legendborne, TNA Apparel) splitting the user journey</li>
+    <li>No athlete profiles or team showcase â the stars of the sport have zero visibility on the site</li>
+    <li>Navigation is flat and doesn't prioritize ticket sales or streaming â the two main revenue actions</li>
+    <li>No interactive elements, no scroll animations, no modern micro-interactions â feels static and dated</li>
+    <li>Mobile experience is basic â no optimized mobile UX patterns like bottom nav or swipe gestures</li>
+    <li>Sponsor presentation is a flat logo grid with no hover effects or links â doesn't showcase the 40+ partners properly</li>
+    <li>No skeleton loading or performance optimization â Squarespace loads heavy scripts (reCAPTCHA, Chart.js, rollup bundles) that slow initial render</li>
+  </ul>
+</div>
+
+<!-- V1 -->
+<div class="concept">
+  <div class="concept-header">
+    <div class="concept-num">V1</div>
+    <div>
+      <h2>DARK FORGE</h2>
+      <div class="subtitle">Dark, competition-first, data-driven</div>
+    </div>
+  </div>
+  <div class="concept-body">
+    <h3>Design Philosophy</h3>
+    <p>Dark Forge treats TNA as a serious competitive league. The entire design is built around the idea that ninja sport is a spectator experience first â like walking into an ESPN dashboard or an F1 race center. Full dark mode with green accents creates a premium, high-tech atmosphere that says "this is a real sport."</p>
+
+    <h3>Key Features</h3>
+    <div class="features">
+      <div class="feature"><strong>Live Score Ticker</strong><span>Persistent horizontal ticker at the top showing real-time match scores, upcoming events, and breaking news â like a sports broadcast</span></div>
+      <div class="feature"><strong>Animated Stats Counter</strong><span>Numbers animate up when scrolled into view (24+ teams, 200+ athletes, 40+ sponsors) â creates impact</span></div>
+      <div class="feature"><strong>Athlete Cards with Hover Stats</strong><span>Cards reveal performance stats (score, wins, MVPs) on hover with a smooth gradient overlay</span></div>
+      <div class="feature"><strong>Interactive Standings Table</strong><span>Full Season 2 leaderboard with hover rows, top-3 highlighted in green, sortable feel</span></div>
+      <div class="feature"><strong>Skeleton Loading Screen</strong><span>Shimmer-effect skeleton loader while content loads â professional, no white flash</span></div>
+      <div class="feature"><strong>Sound Effects + Vibration</strong><span>Subtle click sounds (Web Audio API) and haptic vibration on mobile â adds tactile layer</span></div>
+      <div class="feature"><strong>Scroll Reveal Animations</strong><span>Every section fades in on scroll using IntersectionObserver â smooth, performant</span></div>
+      <div class="feature"><strong>Sponsor Marquee</strong><span>Auto-scrolling sponsor bar with hover-to-highlight â much better than a static grid</span></div>
+    </div>
+
+    <h3>Page Structure</h3>
+    <p>Hero (full-viewport with rotating emblem) > Live Ticker > Stats Bar > Three Pillars (Future/Finance/Fans) > Events/Schedule > Athletes > Arena > Standings > Sponsors > Footer. Navigation is sticky with backdrop blur. "Get Tickets" CTA is always visible.</p>
+
+    <h3>Who It's For</h3>
+    <p>If TNA wants to position itself as a tech-forward, ESPN-style league â competing with professional sports in visual identity â this is the one. Best for fans who want data, scores, and a broadcast feel.</p>
+
+    <div class="improvements">
+      <h4>Why It's Better Than the Current Site</h4>
+      <ul>
+        <li>Live ticker gives the site a "something is happening now" energy the current site completely lacks</li>
+        <li>Dark theme matches the arena/competition environment â feels like you're at the event</li>
+        <li>Every section has hover effects, animations, and sound â vs. the current static Squarespace pages</li>
+        <li>Standings table puts competition data front and center â currently buried in a separate page</li>
+        <li>Athlete profiles give the stars visibility they don't have on the current site at all</li>
+        <li>Single unified page structure vs. fragmented Squarespace multi-page with external store links</li>
+      </ul>
+    </div>
+    <div class="file-ref">TNA_V1_DarkForge.html</div>
+  </div>
+</div>
+
+<!-- V2 -->
+<div class="concept">
+  <div class="concept-header">
+    <div class="concept-num">V2</div>
+    <div>
+      <h2>CLEAN STRIKE</h2>
+      <div class="subtitle">Premium athletic brand, Apple-like minimalism</div>
+    </div>
+  </div>
+  <div class="concept-body">
+    <h3>Design Philosophy</h3>
+    <p>Clean Strike treats TNA like a premium athletic brand â think Nike.com or Apple's product pages. Light backgrounds, generous white space, crisp typography (Space Grotesk), and intentional restraint. Every element has room to breathe. The green accent is used sparingly and with purpose, making it hit harder when it appears. This design says "we're legitimate, we're professional, we belong next to the big leagues."</p>
+
+    <h3>Key Features</h3>
+    <div class="features">
+      <div class="feature"><strong>Green Announcement Bar</strong><span>Persistent top bar in TNA green â "Season 2 is LIVE" with a direct Watch link. Replaces the dead space of the current header</span></div>
+      <div class="feature"><strong>Live Score Card</strong><span>A single prominent card between hero and content showing the current match score â clean, not cluttered</span></div>
+      <div class="feature"><strong>Pill-shaped CTAs</strong><span>Rounded buttons and tags feel modern and approachable â less aggressive than angular buttons</span></div>
+      <div class="feature"><strong>Numbered Pillar Cards</strong><span>01/02/03 oversized numbers give hierarchy and visual rhythm to the mission section</span></div>
+      <div class="feature"><strong>Dark Arena Section</strong><span>The arena section inverts to a black background â creates dramatic contrast and makes the green pop</span></div>
+      <div class="feature"><strong>CTA Block</strong><span>Dedicated call-to-action section near the bottom with a card-based design â drives ticket sales and sponsor inquiries</span></div>
+      <div class="feature"><strong>Subtle Sound Design</strong><span>Triangle-wave clicks â softer and more refined than V1 to match the premium aesthetic</span></div>
+      <div class="feature"><strong>Spinner Skeleton</strong><span>Clean circular spinner loading screen instead of shimmer bars â matches the minimal vibe</span></div>
+    </div>
+
+    <h3>Page Structure</h3>
+    <p>Announcement Bar > Hero (centered text, gradient accent) > Live Score Card > Three Pillars > Events (2-column grid) > Athletes > Arena (inverted dark section) > Standings > Sponsors (grid of hoverable pills) > CTA Block > Footer.</p>
+
+    <h3>Who It's For</h3>
+    <p>If TNA wants to attract mainstream sponsors, media coverage, and position ninja as a legitimate professional sport alongside established leagues â this is the one. It feels expensive and trustworthy. Best for business development and brand partnerships.</p>
+
+    <div class="improvements">
+      <h4>Why It's Better Than the Current Site</h4>
+      <ul>
+        <li>Massive typography upgrade â Space Grotesk gives personality while Inter keeps body text readable</li>
+        <li>The announcement bar alone is more engaging than the current site's entire above-the-fold area</li>
+        <li>White space and card-based layout feels 5 years ahead of the Squarespace template</li>
+        <li>Event cards are designed for conversion â date blocks, category badges, and CTA buttons all optimized</li>
+        <li>The inverted arena section creates a showstopper moment during scroll that the current flat page can't match</li>
+        <li>Unified design language throughout â vs. the current mix of Squarespace defaults and external stores</li>
+      </ul>
+    </div>
+    <div class="file-ref">TNA_V2_CleanStrike.html</div>
+  </div>
+</div>
+
+<!-- V3 -->
+<div class="concept">
+  <div class="concept-header">
+    <div class="concept-num">V3</div>
+    <div>
+      <h2>ARENA PULSE</h2>
+      <div class="subtitle">Immersive, bold, event-driven experience</div>
+    </div>
+  </div>
+  <div class="concept-body">
+    <h3>Design Philosophy</h3>
+    <p>Arena Pulse is built for maximum impact. Full-screen hero with floating particles, pulsing glow effects, and cinematic typography (Bebas Neue). This design doesn't whisper â it announces. Inspired by gaming/esports platforms like the League of Legends client or Valorant's event pages. The entire experience is designed around one thing: getting you to the next event. The "Next Event" card with pricing sits right below the hero fold, making the conversion path as short as possible.</p>
+
+    <h3>Key Features</h3>
+    <div class="features">
+      <div class="feature"><strong>Particle Background</strong><span>40 floating green particles in the hero â creates depth and movement without being distracting. Pure CSS animation, zero libraries</span></div>
+      <div class="feature"><strong>Breathing Glow Effect</strong><span>Radial gradient behind the hero text that slowly scales up and down â makes the page feel alive</span></div>
+      <div class="feature"><strong>Next Event Mega-Card</strong><span>Full-width card with date, matchup, venue, price, and ticket CTA â overlaps the hero for dramatic placement</span></div>
+      <div class="feature"><strong>Match Cards (3-column)</strong><span>Live / Upcoming / Completed match cards with status badges, scores, and venue info â like a sports app dashboard</span></div>
+      <div class="feature"><strong>Tall Athlete Cards</strong><span>380px tall portrait cards with gradient overlays â stats bar slides in on hover. Designed for when real photos are added</span></div>
+      <div class="feature"><strong>Arena Stats Grid</strong><span>4-stat grid (15K sq ft, 500+ seats, 24 teams, 2 seasons) with hover glow â makes the venue feel massive</span></div>
+      <div class="feature"><strong>Feature Cards (Arena)</strong><span>4 stacked feature cards that slide right on hover â pro course design, big screens, meet & greet, training</span></div>
+      <div class="feature"><strong>Transparent-to-blur Nav</strong><span>Navigation starts transparent over the hero, then gains blur + border on scroll â seamless transition</span></div>
+    </div>
+
+    <h3>Page Structure</h3>
+    <p>Full-screen Hero (particles + glow + outline text) > Next Event Card (overlapping hero) > Match Cards (live/upcoming/completed) > Three Pillars (horizontal divider layout) > Athletes (tall portrait cards) > Arena Immersive (stats + feature cards) > Standings > Sponsors (hoverable chips) > CTA Full (big type) > Footer.</p>
+
+    <h3>Who It's For</h3>
+    <p>If TNA wants to create hype, sell tickets, and build a fan culture that feels like esports meets extreme sports â this is the one. The design is unapologetically bold. Best for fan engagement, social media presence, and event marketing.</p>
+
+    <div class="improvements">
+      <h4>Why It's Better Than the Current Site</h4>
+      <ul>
+        <li>The hero alone has more visual energy than the entire current website combined</li>
+        <li>Next Event card with pricing creates an immediate conversion path â the current site buries this</li>
+        <li>Match cards show live/upcoming/completed states â gives fans a reason to keep coming back</li>
+        <li>The particle effect and breathing glow make it feel like a living platform, not a static brochure</li>
+        <li>Transparent-to-blur nav is a premium UX pattern that the Squarespace template doesn't support</li>
+        <li>Arena section with stats grid makes the venue feel world-class â the current arena page is just a paragraph</li>
+      </ul>
+    </div>
+    <div class="file-ref">TNA_V3_ArenaPulse.html</div>
+  </div>
+</div>
+
+<div class="summary">
+  <h2>All Three Share These Upgrades</h2>
+  <p>Regardless of which direction is chosen, every concept includes: skeleton loading, sound effects on click (Web Audio API), haptic vibration on mobile, scroll-reveal animations, hover micro-interactions, SVG pro icons (no emojis), responsive design, live standings table, athlete profiles, event cards with CTAs, TNA's green/white/black color scheme, and the three-pillar philosophy (Future/Finance/Fans) presented with real TNA content.</p>
+</div>
+
+</div>
+</body>
+</html>
